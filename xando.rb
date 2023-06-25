@@ -1,8 +1,14 @@
-board = Array.new(10) {|i| i = " "}
+# array for our board
+board = Array.new(3) { Array.new(3) {|i| i = "." }}
 
+def show_board(board)
+  puts board.map { |x| x.join(' ') }
+end
+
+board[0][1] = "X"
+show_board(board)
 class Player
   attr_accessor :name, :symbol
-
 
   def initialize(name, symbol)
     @name = name
@@ -20,8 +26,3 @@ class Player
     puts board
   end
 end
-
-player1 = Player.new("Piljo", "X")
-player1.play_turn(board, 3)
-player2 = Player.new("Biljan", "O")
-player2.play_turn(board, 0)
