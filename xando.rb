@@ -38,4 +38,4 @@ class Player
 end
 
 player1 = Player.new("Biljan", "X")
-player1.play_turn(board, 0, 0)
+player1.play_turn(board, 3, 0)
