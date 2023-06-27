@@ -5,3 +5,12 @@ def print_board(board)
 end
 
 print_board(board)
+
+def set_value_turn(board, index, symbol)
+  if board[index] == "."
+    board[index] = symbol
+    print_board(board)
+  else
+    puts "Value already set"
+  end
+end
