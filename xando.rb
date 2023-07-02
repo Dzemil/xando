@@ -29,6 +29,10 @@ class Game
     end
   end
 
+  def switch_players!
+    @current_player_id = other_player_id
+  end
+
   def place_player_marker(player)
     position = player.select_position!
     puts "#{player} selects #{player.marker} position #{position}"
