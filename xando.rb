@@ -35,6 +35,12 @@ class Game
     @board[position] = player.marker
   end
 
+  def player_has_won?(player)
+    LINES.any? do |line|
+      line.all? {|position| @board[position] == player.marker}
+    end
+  end
+
   def print_board
     col_separator, row_separator = " | ", "--+---+--"
     label_for_position = lambda{|position| @board[position] ? @board[position] : position}
