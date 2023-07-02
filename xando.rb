@@ -29,6 +29,10 @@ class Game
     end
   end
 
+  def free_positions
+    (1..9).select {|position| @board[position].nil?}
+  end
+
   def switch_players!
     @current_player_id = other_player_id
   end
@@ -43,6 +47,18 @@ class Game
     LINES.any? do |line|
       line.all? {|position| @board[position] == player.marker}
     end
+  end
+
+  def board_full?
+    free_positions.empty?
+  end
+
+  def other_player_id
+    1 - @current_player_id
+  end
+
+  def current_player
+    @players[current_player_id]
   end
 
   def print_board
@@ -66,7 +82,7 @@ class Player
   end
 end
 
-class HumanPlaye < Player
+class HumanPlayer < Player
   def select_position!
     @game.print_board
     loop do
@@ -77,3 +93,5 @@ class HumanPlaye < Player
     end
   end
 end
+
+Game.new(HumanPlayer, HumanPlayer).play
