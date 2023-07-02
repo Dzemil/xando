@@ -11,8 +11,38 @@ class Game
     puts "#{current_player} goes first."
   end
 
+  def play
+    loop do
+      place_player_marker(current_player)
+      
+      if player_has_won?(current_player)
+        puts "#{current_player} wins!"
+        print_board
+        return
+      elsif board_full?
+        puts "It's a draw."
+        print_board
+        return
+      end
+      
+      switch_players!
+    end
+  end
+
+  def place_player_marker(player)
+    position = player.select_position!
+    puts "#{player} selects #{player.marker} position #{position}"
+    @board[position] = player.marker
+  end
+
 
 end
 
 class Player
+  attr_reader :marker
+
+  def initialize(game, marker)
+    @game = game
+    @marker = marker
+  end
 end
